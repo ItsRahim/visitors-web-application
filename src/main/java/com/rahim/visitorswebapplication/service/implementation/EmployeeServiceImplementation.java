@@ -5,6 +5,7 @@ import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -41,17 +42,17 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Optional<Boolean> deleteEmployee(String id) {
-        return Optional.empty();
+    public void deleteEmployee(String id) {
+        employeeRepo.deleteById(id);
     }
 
     @Override
     public Optional<Employee> getEmployee(String id) {
-        return Optional.empty();
+        return employeeRepo.findById(id);
     }
 
     @Override
     public Collection<Employee> listAll(int limit) {
-        return null;
+        return employeeRepo.findAll(PageRequest.of(0, limit)).toList();
     }
 }

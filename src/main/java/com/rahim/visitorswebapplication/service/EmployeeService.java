@@ -16,7 +16,7 @@ public interface EmployeeService {
                             String email,
                             LocalDate startDate,
                             EmployeeRole role);
-    Optional<Boolean> deleteEmployee(String id);
+    void deleteEmployee(String id);
     Optional<Employee> getEmployee(String id);
     Collection<Employee> listAll(int limit);
 }
