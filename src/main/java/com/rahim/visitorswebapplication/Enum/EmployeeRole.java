@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum EmployeeRoles {
+public enum EmployeeRole {
     HOME_MANAGER,
     RECEPTIONIST,
     CARER,
