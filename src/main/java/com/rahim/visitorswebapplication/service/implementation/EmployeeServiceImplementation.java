@@ -1,11 +1,13 @@
 package com.rahim.visitorswebapplication.service.implementation;
 
+import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -21,8 +23,21 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(String id) {
-        return null;
+    public Employee updateEmployee(String id,
+                                   String firstName,
+                                   String lastName,
+                                   LocalDate dob,
+                                   String email,
+                                   LocalDate startDate,
+                                   EmployeeRole role) {
+        Employee toUpdate = employeeRepo.findByIdOrError(id);
+        toUpdate.setFirstName(firstName);
+        toUpdate.setLastName(lastName);
+        toUpdate.setDob(dob);
+        toUpdate.setEmail(email);
+        toUpdate.setStartDate(startDate);
+        toUpdate.setRole(role);
+        return employeeRepo.save(toUpdate);
     }
 
     @Override
