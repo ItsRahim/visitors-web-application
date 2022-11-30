@@ -15,7 +15,6 @@ import java.util.UUID;
 
 @SpringBootApplication
 public class Main {
-
     @Bean
     CommandLineRunner addEmployee(EmployeeRepository employeeRepo) {
         return args -> {
@@ -34,5 +33,4 @@ public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
-
 }
