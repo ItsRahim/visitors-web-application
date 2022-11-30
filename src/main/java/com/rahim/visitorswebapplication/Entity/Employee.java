@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     @Column(unique = true)
-    private Long id;
+    private String id;
 
     private String firstName;
     private String lastName;
