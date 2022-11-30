@@ -1,7 +1,7 @@
 package com.rahim.visitorswebapplication.controller;
 
 import com.rahim.visitorswebapplication.model.Employee;
-import com.rahim.visitorswebapplication.service.implementation.EmployeeServiceImplementation;
+import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +14,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class EmployeeController {
 
-    private final EmployeeServiceImplementation employeeService;
+    private final EmployeeService employeeService;
 
     @GetMapping("/list")
     public Collection<Employee> listAll() {
