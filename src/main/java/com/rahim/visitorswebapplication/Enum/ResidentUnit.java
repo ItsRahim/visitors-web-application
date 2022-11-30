@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public enum ResidentUnits {
+public enum ResidentUnit {
     WILLOW,
     ROSE,
     HAZEL;
