@@ -1,8 +1,8 @@
 package com.rahim.visitorswebapplication;
 
-import com.rahim.visitorswebapplication.Entity.Employee;
-import com.rahim.visitorswebapplication.Enum.EmployeeRole;
-import com.rahim.visitorswebapplication.Repository.EmployeeRepository;
+import com.rahim.visitorswebapplication.model.Employee;
+import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
+import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

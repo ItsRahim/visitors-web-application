@@ -1,6 +1,6 @@
-package com.rahim.visitorswebapplication.Repository;
+package com.rahim.visitorswebapplication.repository;
 
-import com.rahim.visitorswebapplication.Entity.Resident;
+import com.rahim.visitorswebapplication.model.Resident;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

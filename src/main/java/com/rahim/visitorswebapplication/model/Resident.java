@@ -1,6 +1,6 @@
-package com.rahim.visitorswebapplication.Entity;
+package com.rahim.visitorswebapplication.model;
 
-import com.rahim.visitorswebapplication.Enum.ResidentUnit;
+import com.rahim.visitorswebapplication.enumeration.ResidentUnit;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

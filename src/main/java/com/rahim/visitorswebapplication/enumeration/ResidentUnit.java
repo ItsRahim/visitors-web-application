@@ -1,4 +1,4 @@
-package com.rahim.visitorswebapplication.Enum;
+package com.rahim.visitorswebapplication.enumeration;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
