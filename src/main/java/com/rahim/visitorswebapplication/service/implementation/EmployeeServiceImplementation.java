@@ -25,20 +25,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(String id,
-                                   String firstName,
-                                   String lastName,
-                                   LocalDate dob,
-                                   String email,
-                                   LocalDate startDate,
-                                   EmployeeRole role) {
+    public Employee updateEmployee(Employee emp, String id) {
         Employee toUpdate = employeeRepo.findByIdOrError(id);
-        toUpdate.setFirstName(firstName);
-        toUpdate.setLastName(lastName);
-        toUpdate.setDob(dob);
-        toUpdate.setEmail(email);
-        toUpdate.setStartDate(startDate);
-        toUpdate.setRole(role);
+        toUpdate.setFirstName(emp.getFirstName());
+        toUpdate.setLastName(emp.getLastName());
+        toUpdate.setDob(emp.getDob());
+        toUpdate.setEmail(emp.getEmail());
+        toUpdate.setStartDate(emp.getStartDate());
+        toUpdate.setRole(emp.getRole());
         return employeeRepo.save(toUpdate);
     }
 

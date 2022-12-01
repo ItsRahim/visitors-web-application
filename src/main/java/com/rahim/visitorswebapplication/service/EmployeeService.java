@@ -9,13 +9,7 @@ import java.util.Optional;
 
 public interface EmployeeService {
     Employee createEmployee(Employee employee);
-    Employee updateEmployee(String id,
-                            String firstName,
-                            String lastName,
-                            LocalDate dob,
-                            String email,
-                            LocalDate startDate,
-                            EmployeeRole role);
+    Employee updateEmployee(Employee employee, String id);
     void deleteEmployee(String id);
     Optional<Employee> getEmployee(String id);
     Collection<Employee> listAll(int limit);

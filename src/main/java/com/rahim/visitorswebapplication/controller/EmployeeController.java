@@ -35,10 +35,10 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployee(id);
     }
-    
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/update/{id}")
     public Employee updateEmployee(@RequestBody Employee emp, @PathVariable String id) {
-        return employeeService.updateEmployee(emp)
+        return employeeService.updateEmployee(emp, id);
     }
 }
