@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v2/employee")
@@ -22,6 +23,12 @@ public class EmployeeController {
     @GetMapping("/list")
     public Collection<Employee> listAll() {
         return employeeService.listAll(10);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/get/{id}")
+    public Optional<Employee> getEmployee(@PathVariable String id) {
+        return employeeService.getEmployee(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
