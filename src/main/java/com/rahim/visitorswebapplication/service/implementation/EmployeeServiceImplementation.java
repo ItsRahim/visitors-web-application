@@ -1,15 +1,12 @@
 package com.rahim.visitorswebapplication.service.implementation;
 
-import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -38,8 +35,10 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
     @Override
     public void deleteEmployee(String id) {
-        Employee toDelete = employeeRepo.findByIdOrError(id);
-        employeeRepo.delete(toDelete);
+        boolean exists = employeeRepo.existsById(id);
+        if (!exists) {
+            throw new IllegalStateException("Employee with ID " + id + " does not exist");
+        }employeeRepo.deleteById(id);
     }
 
     @Override
