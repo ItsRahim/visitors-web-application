@@ -35,10 +35,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
     @Override
     public void deleteEmployee(String id) {
-        boolean exists = employeeRepo.existsById(id);
-        if (!exists) {
-            throw new IllegalStateException("Employee with ID " + id + " does not exist");
-        }employeeRepo.deleteById(id);
+        employeeRepo.deleteByEmployeeId(id);
     }
 
     @Override
