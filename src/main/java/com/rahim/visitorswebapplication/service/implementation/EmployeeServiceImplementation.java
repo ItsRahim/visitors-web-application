@@ -6,6 +6,7 @@ import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -43,7 +44,8 @@ public class EmployeeServiceImplementation implements EmployeeService {
 
     @Override
     public void deleteEmployee(String id) {
-        employeeRepo.deleteById(id);
+        Employee toDelete = employeeRepo.findByIdOrError(id);
+        employeeRepo.delete(toDelete);
     }
 
     @Override
