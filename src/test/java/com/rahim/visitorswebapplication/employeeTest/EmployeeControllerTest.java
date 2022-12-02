@@ -4,9 +4,11 @@ import com.rahim.visitorswebapplication.configurators.EmployeeConfigurations;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
+import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.lang.annotation.Before;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -22,6 +24,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -32,28 +35,6 @@ class EmployeeControllerTest {
     private MockMvc mockMvc;
     private final String baseUrl = "/api/v2/employee";
 
-    @BeforeAll
-    static void createEmployeeData(EmployeeRepository employeeRepo) {
-        Employee rahim = new Employee(
-                UUID.randomUUID().toString(),
-                "Rahim",
-                "Ahmed",
-                LocalDate.of(2001, Month.AUGUST, 17),
-                EmployeeConfigurations.emailFormatter("rahim", "ahmed"),
-                LocalDate.of(2019, Month.DECEMBER, 21),
-                EmployeeRole.HOME_MANAGER
-        );
-        Employee naima = new Employee(
-                UUID.randomUUID().toString(),
-                "Naima",
-                "Akther",
-                LocalDate.of(1999, Month.JULY, 08),
-                EmployeeConfigurations.emailFormatter("naima", "akther"),
-                LocalDate.of(2019, Month.SEPTEMBER, 15),
-                EmployeeRole.RECEPTIONIST
-        );
-        employeeRepo.saveAll(List.of(rahim, naima));
-    }
     @Test
     void shouldCreateMockMvc() {
         assertNotNull(mockMvc);
@@ -74,7 +55,9 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void shouldGetAllUsers() {
-
+    void shouldGetAllUsers() throws Exception{
+        mockMvc.perform(get(baseUrl + "/list"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(1)));
     }
 }
