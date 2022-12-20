@@ -8,7 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -39,8 +38,8 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployee(String id) {
-        return employeeRepo.findById(id);
+    public Employee getEmployee(String id) {
+        return employeeRepo.findById(id).orElse(null);
     }
 
     @Override
