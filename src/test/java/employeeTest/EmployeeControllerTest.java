@@ -2,6 +2,7 @@ package employeeTest;
 
 import com.rahim.visitorswebapplication.Main;
 import com.rahim.visitorswebapplication.controller.EmployeeController;
+import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.hamcrest.Matchers;
@@ -15,10 +16,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.mockito.Mockito.mock;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -43,19 +47,24 @@ class EmployeeControllerTest {
                                 "\"email\": \"jasmin.khanam@yahoo.co.uk\"," +
                                 "\"startDate\": \"2012-07-15\"," +
                                 "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
-                .andExpect(MockMvcResultMatchers.status().isCreated());
+                .andExpect(status().isCreated());
     }
 
     @Test
     void shouldGetAllUsers() throws Exception {
         mockMvc.perform(get("/api/v2/employee/list"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(2)));
     }
 
     @Test
     void shouldDeleteUser() throws Exception {
         mockMvc.perform(delete("/api/v2/employee/delete/{id}", "11"))
-                .andExpect(MockMvcResultMatchers.status().isOk());
+                .andExpect(status().isOk());
+        //verify(employeeService).deleteEmployee("11");
+        verifyNoMoreInteractions(employeeService);
+
+        Employee employee = employeeService.getEmployee("11");
+        assertNull(employee);
     }
 }
