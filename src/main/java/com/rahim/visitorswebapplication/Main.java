@@ -28,7 +28,16 @@ public class Main {
                     LocalDate.of(2019, Month.DECEMBER, 21),
                     EmployeeRole.HOME_MANAGER
             );
-            employeeRepo.saveAll(List.of(rahim));
+            Employee reehan = new Employee(
+                    "11",
+                    "Reehan",
+                    "Saif",
+                    LocalDate.of(2013, Month.JANUARY, 13),
+                    EmployeeConfigurations.emailFormatter("reehan", "saif"),
+                    LocalDate.of(2022, Month.JULY, 13),
+                    EmployeeRole.RECEPTIONIST
+            );
+            employeeRepo.saveAll(List.of(rahim, reehan));
         };
     }
     public static void main(String[] args) {
