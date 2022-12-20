@@ -1,5 +1,7 @@
 package employeeTest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.rahim.visitorswebapplication.Main;
 import com.rahim.visitorswebapplication.controller.EmployeeController;
 import com.rahim.visitorswebapplication.model.Employee;
@@ -13,15 +15,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -30,6 +33,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = Main.class)
 class EmployeeControllerTest {
 
+    /*
+    Creating mock instances of service and controller so results do not affect db
+     */
     EmployeeService employeeService = mock(EmployeeService.class);
     EmployeeController employeeController = new EmployeeController(employeeService);
 
@@ -38,23 +44,41 @@ class EmployeeControllerTest {
 
     @Test
     void shouldCreateEmployee() throws Exception {
-        mockMvc.perform(post("/api/v2/employee/create")
+        MvcResult result = mockMvc.perform(post("/api/v2/employee/create")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\": \"UUID.randomUUID().toString()\"," +
-                                "\"firstname\": \"Jasmin\", " +
-                                "\"lastname\": \"Khanam\"," +
+                                "\"firstName\": \"Jasmin\", " +
+                                "\"lastName\": \"Khanam\"," +
                                 "\"dob\": \"1980-05-31\"," +
-                                "\"email\": \"jasmin.khanam@yahoo.co.uk\"," +
+                                "\"email\": \"jasmin.khanam@bupa.com\"," +
                                 "\"startDate\": \"2012-07-15\"," +
                                 "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+
+                /*
+                contains the response from the server
+                 */
+                .andReturn();
+
+        /*
+        Extract the response body from the MvcResult object above and verify that it contains the expected data
+         */
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        String responseBody = result.getResponse().getContentAsString();
+
+        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
+
+        assertEquals(createdEmployee.getFirstName(),"Jasmin");
+        assertEquals(createdEmployee.getEmail(), "jasmin.khanam@bupa.com");
     }
 
     @Test
     void shouldGetAllUsers() throws Exception {
         mockMvc.perform(get("/api/v2/employee/list"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()", Matchers.is(2)));
+                .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
 
     @Test
