@@ -70,7 +70,7 @@ class EmployeeControllerTest {
 
         Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
 
-        assertEquals(createdEmployee.getFirstName(),"Jasmin");
+        assertEquals(createdEmployee.getFirstName(),"asda");
         assertEquals(createdEmployee.getEmail(), "jasmin.khanam@bupa.com");
     }
 
