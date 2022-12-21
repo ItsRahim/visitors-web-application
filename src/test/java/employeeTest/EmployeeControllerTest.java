@@ -13,10 +13,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -74,14 +79,15 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void shouldGetAllUsers() throws Exception {
+    void shouldGetAllEmployees() throws Exception {
         mockMvc.perform(get("/api/v2/employee/list"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
 
+    @DirtiesContext
     @Test
-    void shouldDeleteUser() throws Exception {
+    void shouldDeleteEmployee() throws Exception {
         mockMvc.perform(delete("/api/v2/employee/delete/{id}", "11"))
                 .andExpect(status().isOk());
         //verify(employeeService).deleteEmployee("11");
@@ -92,7 +98,28 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void shouldUpdateUser() throws Exception {
+    void shouldGetEmployeeById() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/api/v2/employee/get/{id}", "11")
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        String responseBody = response.getContentAsString();
+
+        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
+
+        assertEquals(createdEmployee.getFirstName(), "Reehan");
+        assertEquals(createdEmployee.getId(), "11");
+    }
+
+    @DirtiesContext
+    @Test
+    void shouldUpdateEmployee() throws Exception {
         MvcResult result = mockMvc.perform(put("/api/v2/employee/update/{id}", "11")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\": \"UUID.randomUUID().toString()\"," +
