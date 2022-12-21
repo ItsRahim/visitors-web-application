@@ -5,6 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.rahim.visitorswebapplication.Main;
 import com.rahim.visitorswebapplication.controller.EmployeeController;
 import com.rahim.visitorswebapplication.model.Employee;
+import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.hamcrest.Matchers;
@@ -23,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -54,10 +56,7 @@ class EmployeeControllerTest {
                                 "\"startDate\": \"2012-07-15\"," +
                                 "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
                 .andExpect(status().isCreated())
-
-                /*
-                contains the response from the server
-                 */
+                //contains the response from the server
                 .andReturn();
 
         /*
@@ -70,7 +69,7 @@ class EmployeeControllerTest {
 
         Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
 
-        assertEquals(createdEmployee.getFirstName(),"Jasmin");
+        assertEquals(createdEmployee.getFirstName(), "Jasmin");
         assertEquals(createdEmployee.getEmail(), "jasmin.khanam@bupa.com");
     }
 
@@ -90,5 +89,30 @@ class EmployeeControllerTest {
 
         Employee employee = employeeService.getEmployee("11");
         assertNull(employee);
+    }
+
+    @Test
+    void shouldUpdateUser() throws Exception {
+        MvcResult result = mockMvc.perform(put("/api/v2/employee/update/{id}", "11")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\": \"UUID.randomUUID().toString()\"," +
+                                "\"firstName\": \"Reehan2\", " +
+                                "\"lastName\": \"Saif2\"," +
+                                "\"dob\": \"2013-01-13\"," +
+                                "\"email\": \"reehan.saif2@bupa.com\"," +
+                                "\"startDate\": \"2022-12-25\"," +
+                                "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
+                .andExpect(status().isNoContent())
+                .andReturn();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        String responseBody = result.getResponse().getContentAsString();
+
+        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
+
+        assertEquals(createdEmployee.getFirstName(), "Reehan2");
+        assertEquals(createdEmployee.getEmail(), "reehan.saif2@bupa.com");
     }
 }
