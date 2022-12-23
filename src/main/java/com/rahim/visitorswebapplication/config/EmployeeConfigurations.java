@@ -1,4 +1,4 @@
-package com.rahim.visitorswebapplication.configurators;
+package com.rahim.visitorswebapplication.config;
 
 import java.text.MessageFormat;
 

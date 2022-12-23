@@ -1,6 +1,6 @@
 package unit_test.employee;
 
-import com.rahim.visitorswebapplication.configurators.EmployeeConfigurations;
+import com.rahim.visitorswebapplication.config.EmployeeConfigurations;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
 import org.junit.jupiter.api.BeforeAll;

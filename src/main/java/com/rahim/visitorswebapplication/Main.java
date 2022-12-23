@@ -1,6 +1,6 @@
 package com.rahim.visitorswebapplication;
 
-import com.rahim.visitorswebapplication.configurators.EmployeeConfigurations;
+import com.rahim.visitorswebapplication.config.EmployeeConfigurations;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
