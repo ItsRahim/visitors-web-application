@@ -22,7 +22,7 @@ public class ResidentServiceImplementation implements ResidentService {
 
     @Override
     public Resident updateResident(Resident resident, String id) {
-        Resident toUpdate = residentRepository.findById(id).orElse(null);
+        Resident toUpdate = residentRepository.findByIdOrError(id);
         toUpdate.setFirstName(resident.getFirstName());
         toUpdate.setLastName(resident.getLastName());
         toUpdate.setDob(resident.getDob());
