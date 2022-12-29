@@ -14,17 +14,18 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Resident {
     @Id
-    @Column(unique = true)
     private String id;
 
     private String firstName;
     private String lastName;
     private LocalDate dob;
 
-    @Enumerated(EnumType.STRING)
     private ResidentUnit unit;
 
     private String fundingType;
     private int band;
     private LocalDate admissionDate;
+
+    @OneToOne(mappedBy = "resident")
+    private Booking booking;
 }
