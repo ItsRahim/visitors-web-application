@@ -40,9 +40,9 @@ public class VisitorController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/{id}")
-    public Visitor updateVisitor(@RequestBody Visitor visitor) {
-        return visitorService.updateVisitor(visitor);
+    @PatchMapping("/update/{id}")
+    public Visitor updateVisitor(@RequestBody Visitor visitor, @PathVariable String id) {
+        return visitorService.updateVisitor(visitor, id);
     }
 
 }
