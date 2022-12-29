@@ -18,9 +18,10 @@ public class VisitorServiceImplementation implements VisitorService {
         return visitorRepository.save(visitor);
     }
 
+    //!TODO: Correctly implement updating resource
     @Override
-    public Visitor updateVisitor(Visitor visitor) {
-        return visitorRepository.saveAndFlush(visitor);
+    public Visitor updateVisitor(Visitor visitor, String id) {
+        return visitorRepository.save(visitor);
     }
 
     @Override
