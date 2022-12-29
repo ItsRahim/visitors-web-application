@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
-
+//!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
 @AllArgsConstructor

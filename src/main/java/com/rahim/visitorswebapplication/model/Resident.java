@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+//!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
 @AllArgsConstructor
@@ -26,6 +27,6 @@ public class Resident {
     private int band;
     private LocalDate admissionDate;
 
-    @OneToOne(mappedBy = "resident")
-    private Booking booking;
+//    @OneToOne(mappedBy = "resident")
+//    private Booking booking;
 }

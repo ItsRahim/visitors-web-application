@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
+//!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
 @AllArgsConstructor
@@ -15,13 +16,13 @@ public class Booking {
     @Id
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "visitor_id")
-    private Visitor visitor;
-
-    @OneToOne
-    @JoinColumn(name = "resident_id")
-    private Resident resident;
+//    @ManyToOne
+//    @JoinColumn(name = "visitor_id")
+//    private Visitor visitor;
+//
+//    @OneToOne
+//    @JoinColumn(name = "resident_id")
+//    private Resident resident;
     private LocalDateTime bookingTime;
     private LocalDateTime bookingStartTime;
     private LocalDateTime bookingEndTime;
