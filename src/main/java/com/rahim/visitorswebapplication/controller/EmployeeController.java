@@ -43,7 +43,7 @@ public class EmployeeController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public Employee updateEmployee(@RequestBody Employee emp, @PathVariable String id) {
         return employeeService.updateEmployee(emp, id);
     }

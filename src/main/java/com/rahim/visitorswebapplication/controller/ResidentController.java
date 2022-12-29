@@ -40,7 +40,7 @@ public class ResidentController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     public Resident updateResident(@RequestBody Resident resident, @PathVariable String id) {
         return residentService.updateResident(resident, id);
     }
