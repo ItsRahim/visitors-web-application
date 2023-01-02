@@ -6,6 +6,7 @@ import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -16,12 +17,14 @@ public class EmployeeServiceImplementation implements EmployeeService {
     private final EmployeeRepository employeeRepo;
 
     @Override
+    @Transactional
     public Employee createEmployee(Employee employee) {
         return employeeRepo.save(employee);
     }
 
     //!TODO: Correctly implement updating resource
     @Override
+    @Transactional
     public Employee updateEmployee(Employee emp, String id) {
         Employee toUpdate = employeeRepo.findByIdOrError(id);
         toUpdate.setFirstName(emp.getFirstName());
@@ -34,6 +37,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
+    @Transactional
     public void deleteEmployee(String id) {
         employeeRepo.deleteByEmployeeId(id);
     }

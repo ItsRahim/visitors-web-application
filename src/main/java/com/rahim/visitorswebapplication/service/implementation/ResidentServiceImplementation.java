@@ -6,6 +6,7 @@ import com.rahim.visitorswebapplication.service.ResidentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -16,12 +17,14 @@ public class ResidentServiceImplementation implements ResidentService {
     private final ResidentRepository residentRepository;
 
     @Override
+    @Transactional
     public Resident createResident(Resident resident) {
         return residentRepository.save(resident);
     }
 
     //!TODO: Correctly implement updating resource
     @Override
+    @Transactional
     public Resident updateResident(Resident resident, String id) {
         Resident toUpdate = residentRepository.findByIdOrError(id);
         toUpdate.setFirstName(resident.getFirstName());
@@ -35,6 +38,7 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
+    @Transactional
     public void deleteResident(String id) {
         residentRepository.deleteByResidentId(id);
     }

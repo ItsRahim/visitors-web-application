@@ -6,6 +6,7 @@ import com.rahim.visitorswebapplication.service.VisitorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 
@@ -14,17 +15,21 @@ import java.util.Collection;
 public class VisitorServiceImplementation implements VisitorService {
     private final VisitorRepository visitorRepository;
 
+    @Override
+    @Transactional
     public Visitor createVisitor(Visitor visitor) {
         return visitorRepository.save(visitor);
     }
 
     //!TODO: Correctly implement updating resource
     @Override
+    @Transactional
     public Visitor updateVisitor(Visitor visitor, String id) {
         return visitorRepository.save(visitor);
     }
 
     @Override
+    @Transactional
     public void deleteVisitor(String id) {
         visitorRepository.deleteByVisitorId(id);
     }
