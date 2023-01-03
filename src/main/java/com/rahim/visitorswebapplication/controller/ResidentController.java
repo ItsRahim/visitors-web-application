@@ -22,25 +22,25 @@ public class ResidentController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/get/{id}")
+    @GetMapping("/id}")
     public Resident getResident(@PathVariable String id) {
         return residentService.getResident(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/create")
+    @PostMapping("")
     public Resident create(@RequestBody Resident resident) {
         return residentService.createResident(resident);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteResident(@PathVariable String id) {
         residentService.deleteResident(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/update/{id}")
+    @PatchMapping("/{id}")
     public Resident updateResident(@RequestBody Resident resident, @PathVariable String id) {
         return residentService.updateResident(resident, id);
     }
