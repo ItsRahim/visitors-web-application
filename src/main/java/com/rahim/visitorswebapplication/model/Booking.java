@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 //!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
+@Table(name = "bookings")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Booking {
@@ -23,8 +24,14 @@ public class Booking {
 //    @OneToOne
 //    @JoinColumn(name = "resident_id")
 //    private Resident resident;
+    @Column(name = "booking_time")
     private LocalDateTime bookingTime;
+    @Column(name = "start_time")
     private LocalDateTime bookingStartTime;
+
+    @Column(name = "end_time")
     private LocalDateTime bookingEndTime;
+
+    @Column(name = "status")
     private BookingStatus bookingStatus = BookingStatus.PENDING;
 }
