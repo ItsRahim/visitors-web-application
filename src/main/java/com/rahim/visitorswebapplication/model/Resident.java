@@ -35,6 +35,17 @@ public class Resident {
     @Column(name = "admission_date")
     private LocalDate admissionDate;
 
-//    @OneToOne(mappedBy = "resident")
-//    private Booking booking;
+    @OneToOne(mappedBy = "resident")
+    private Booking booking;
+
+    public Resident(String id, String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.unit = unit;
+        this.fundingType = fundingType;
+        this.band = band;
+        this.admissionDate = admissionDate;
+    }
 }

@@ -17,13 +17,13 @@ public class Booking {
     @Id
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "visitor_id")
-//    private Visitor visitor;
-//
-//    @OneToOne
-//    @JoinColumn(name = "resident_id")
-//    private Resident resident;
+    @ManyToOne
+    @JoinColumn(name = "visitor_id")
+    private Visitor visitor;
+
+    @OneToOne
+    @JoinColumn(name = "resident_id")
+    private Resident resident;
     @Column(name = "booking_time")
     private LocalDateTime bookingTime;
     @Column(name = "start_time")
@@ -34,4 +34,12 @@ public class Booking {
 
     @Column(name = "status")
     private BookingStatus bookingStatus = BookingStatus.PENDING;
+
+    public Booking(Long id, LocalDateTime bookingTime, LocalDateTime bookingStartTime, LocalDateTime bookingEndTime, BookingStatus bookingStatus) {
+        this.id = id;
+        this.bookingTime = bookingTime;
+        this.bookingStartTime = bookingStartTime;
+        this.bookingEndTime = bookingEndTime;
+        this.bookingStatus = bookingStatus;
+    }
 }

@@ -15,10 +15,18 @@ public class Visitor {
     @Id
     private String id;
 
-//    @OneToMany(mappedBy = "visitor")
-//    private Set<Booking> booking;
+    @OneToMany(mappedBy = "visitor")
+    private Set<Booking> booking;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
+
+    public Visitor(String id, String firstName, String lastName, String email, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 }
