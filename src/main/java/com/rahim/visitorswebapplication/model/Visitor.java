@@ -1,9 +1,7 @@
 package com.rahim.visitorswebapplication.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Set;
 //!TODO: Find a way to remove the need of the table mapping
@@ -11,22 +9,27 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Visitor {
     @Id
+    @NonNull
     private String id;
+
+    @NonNull
+    @Column(name = "first_name")
+    private String firstName;
+
+    @NonNull
+    @Column(name = "last_name")
+    private String lastName;
+
+    @NonNull
+    private String email;
+
+    @NonNull
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "visitor")
     private Set<Booking> booking;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String phoneNumber;
-
-    public Visitor(String id, String firstName, String lastName, String email, String phoneNumber) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-    }
 }

@@ -1,10 +1,10 @@
 package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.BookingStatus;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 //!TODO: Find a way to remove the need of the table mapping
@@ -13,33 +13,38 @@ import java.time.LocalDateTime;
 @Table(name = "bookings")
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Booking {
     @Id
+    @NonNull
     private Long id;
 
+
+    @NonNull
     @ManyToOne
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
+
+    @NonNull
     @OneToOne
     @JoinColumn(name = "resident_id")
     private Resident resident;
+
+    @NonNull
     @Column(name = "booking_time")
     private LocalDateTime bookingTime;
+
+    @Nullable
     @Column(name = "start_time")
     private LocalDateTime bookingStartTime;
 
+    @Nullable
     @Column(name = "end_time")
     private LocalDateTime bookingEndTime;
 
+    @NonNull
     @Column(name = "status")
     private BookingStatus bookingStatus = BookingStatus.PENDING;
 
-    public Booking(Long id, LocalDateTime bookingTime, LocalDateTime bookingStartTime, LocalDateTime bookingEndTime, BookingStatus bookingStatus) {
-        this.id = id;
-        this.bookingTime = bookingTime;
-        this.bookingStartTime = bookingStartTime;
-        this.bookingEndTime = bookingEndTime;
-        this.bookingStatus = bookingStatus;
-    }
 }

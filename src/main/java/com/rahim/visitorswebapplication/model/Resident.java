@@ -1,10 +1,9 @@
 package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.ResidentUnit;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,38 +13,38 @@ import java.time.LocalDate;
 @Table(name = "residents")
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class Resident {
     @Id
+    @NonNull
     private String id;
 
-
+    @NonNull
     @Column(name = "first_name")
     private String firstName;
 
+
+    @NonNull
     @Column(name = "last_name")
     private String lastName;
+
+    @NonNull
     private LocalDate dob;
 
+    @NonNull
     private ResidentUnit unit;
 
+    @NonNull
     @Column(name = "funding_type")
     private String fundingType;
+
     private int band;
 
+    @NonNull
     @Column(name = "admission_date")
     private LocalDate admissionDate;
 
+
     @OneToOne(mappedBy = "resident")
     private Booking booking;
-
-    public Resident(String id, String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dob = dob;
-        this.unit = unit;
-        this.fundingType = fundingType;
-        this.band = band;
-        this.admissionDate = admissionDate;
-    }
 }
