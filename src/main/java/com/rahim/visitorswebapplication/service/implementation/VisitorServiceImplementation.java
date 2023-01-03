@@ -21,7 +21,6 @@ public class VisitorServiceImplementation implements VisitorService {
         return visitorRepository.save(visitor);
     }
 
-    //!TODO: Correctly implement updating resource
     @Override
     @Transactional
     public Visitor updateVisitor(Visitor visitor, String id) {

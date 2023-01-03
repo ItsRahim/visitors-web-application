@@ -22,7 +22,6 @@ public class ResidentServiceImplementation implements ResidentService {
         return residentRepository.save(resident);
     }
 
-    //!TODO: Correctly implement updating resource
     @Override
     @Transactional
     public Resident updateResident(Resident resident, String id) {

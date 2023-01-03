@@ -50,7 +50,7 @@ class EmployeeControllerTest {
 
     @Test
     void shouldCreateEmployee() throws Exception {
-        MvcResult result = mockMvc.perform(post("/api/v2/employee/create")
+        MvcResult result = mockMvc.perform(post("/api/v2/employee")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\": \"UUID.randomUUID().toString()\"," +
                                 "\"firstName\": \"Jasmin\", " +
@@ -87,7 +87,7 @@ class EmployeeControllerTest {
     @DirtiesContext
     @Test
     void shouldDeleteEmployee() throws Exception {
-        mockMvc.perform(delete("/api/v2/employee/delete/{id}", "11"))
+        mockMvc.perform(delete("/api/v2/employee/{id}", "11"))
                 .andExpect(status().isOk());
         //verify(employeeService).deleteEmployee("11");
         verifyNoMoreInteractions(employeeService);
@@ -99,7 +99,7 @@ class EmployeeControllerTest {
     @Test
     void shouldGetEmployeeById() throws Exception {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/api/v2/employee/get/{id}", "11")
+                .get("/api/v2/employee/{id}", "11")
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
         MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().getResponse();
 
@@ -119,7 +119,7 @@ class EmployeeControllerTest {
     @DirtiesContext
     @Test
     void shouldUpdateEmployee() throws Exception {
-        MvcResult result = mockMvc.perform(put("/api/v2/employee/update/{id}", "11")
+        MvcResult result = mockMvc.perform(put("/api/v2/employee/{id}", "11")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"id\": \"UUID.randomUUID().toString()\"," +
                                 "\"firstName\": \"Reehan2\", " +
