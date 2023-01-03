@@ -1,5 +1,6 @@
 package com.rahim.visitorswebapplication.service.implementation;
 
+import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.model.Visitor;
 import com.rahim.visitorswebapplication.repository.VisitorRepository;
 import com.rahim.visitorswebapplication.service.VisitorService;
@@ -24,7 +25,12 @@ public class VisitorServiceImplementation implements VisitorService {
     @Override
     @Transactional
     public Visitor updateVisitor(Visitor visitor, String id) {
-        return visitorRepository.save(visitor);
+        Visitor toUpdate = visitorRepository.findByIdOrError(id);
+        toUpdate.setFirstName(visitor.getFirstName());
+        toUpdate.setLastName(visitor.getLastName());
+        toUpdate.setEmail(visitor.getEmail());
+        toUpdate.setPhoneNumber(visitor.getPhoneNumber());
+        return visitorRepository.save(toUpdate);
     }
 
     @Override
