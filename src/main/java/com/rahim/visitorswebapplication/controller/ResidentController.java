@@ -22,7 +22,7 @@ public class ResidentController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/id}")
+    @GetMapping("/{id}")
     public Resident getResident(@PathVariable String id) {
         return residentService.getResident(id);
     }
