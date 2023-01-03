@@ -3,7 +3,9 @@ package com.rahim.visitorswebapplication;
 import com.rahim.visitorswebapplication.config.EmployeeConfigurations;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
+import com.rahim.visitorswebapplication.model.Visitor;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
+import com.rahim.visitorswebapplication.repository.VisitorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,7 @@ import java.util.UUID;
 @SpringBootApplication
 public class Main {
     @Bean
-    CommandLineRunner addEmployee(EmployeeRepository employeeRepo) {
+    CommandLineRunner addEmployee(EmployeeRepository employeeRepo, VisitorRepository visitorRepo) {
         return args -> {
             Employee rahim = new Employee(
                     UUID.randomUUID().toString(),
@@ -37,7 +39,15 @@ public class Main {
                     LocalDate.of(2022, Month.JULY, 13),
                     EmployeeRole.RECEPTIONIST
             );
+            Visitor visitor = new Visitor(
+                    UUID.randomUUID().toString(),
+                    "Jasmin",
+                    "Khanam",
+                    "jasminkhanam@yahoo.co.uk",
+                    "07770594166"
+            );
             employeeRepo.saveAll(List.of(rahim, reehan));
+            visitorRepo.saveAll(List.of(visitor));
         };
     }
     public static void main(String[] args) {
