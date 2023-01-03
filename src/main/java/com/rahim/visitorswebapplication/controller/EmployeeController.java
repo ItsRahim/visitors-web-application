@@ -25,25 +25,25 @@ public class EmployeeController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/get/{id}")
+    @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable String id) {
         return employeeService.getEmployee(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/create")
+    @PostMapping("")
     public Employee create(@RequestBody Employee employee) {
         return employeeService.createEmployee(employee);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public void deleteEmployee(@PathVariable String id) {
         employeeService.deleteEmployee(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Employee updateEmployee(@RequestBody Employee emp, @PathVariable String id) {
         return employeeService.updateEmployee(emp, id);
     }
