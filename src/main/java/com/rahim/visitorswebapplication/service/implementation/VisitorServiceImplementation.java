@@ -1,6 +1,5 @@
 package com.rahim.visitorswebapplication.service.implementation;
 
-import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.model.Visitor;
 import com.rahim.visitorswebapplication.repository.VisitorRepository;
 import com.rahim.visitorswebapplication.service.VisitorService;
