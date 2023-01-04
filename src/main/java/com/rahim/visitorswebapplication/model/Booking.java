@@ -7,7 +7,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
-//!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
 @Table(name = "bookings")

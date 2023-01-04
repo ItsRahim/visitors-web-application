@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
-//!TODO: Find a way to remove the need of the table mapping
 @Data
 @Entity
 @AllArgsConstructor
