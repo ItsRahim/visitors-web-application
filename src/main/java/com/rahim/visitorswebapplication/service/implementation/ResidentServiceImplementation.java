@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class ResidentServiceImplementation implements ResidentService {
 
@@ -23,7 +24,6 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
-    @Transactional
     public Resident updateResident(Resident resident, String id) {
         Resident toUpdate = residentRepository.findByIdOrError(id);
         toUpdate.setFirstName(resident.getFirstName());
@@ -37,7 +37,6 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
-    @Transactional
     public void deleteResident(String id) {
         residentRepository.deleteByResidentId(id);
     }

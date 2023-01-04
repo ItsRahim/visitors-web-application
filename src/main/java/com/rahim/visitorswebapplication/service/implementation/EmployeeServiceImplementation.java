@@ -11,19 +11,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class EmployeeServiceImplementation implements EmployeeService {
 
     private final EmployeeRepository employeeRepo;
 
     @Override
-    @Transactional
+
     public Employee createEmployee(Employee employee) {
         return employeeRepo.save(employee);
     }
 
     @Override
-    @Transactional
     public Employee updateEmployee(Employee emp, String id) {
         Employee toUpdate = employeeRepo.findByIdOrError(id);
         toUpdate.setFirstName(emp.getFirstName());
@@ -36,7 +36,6 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    @Transactional
     public void deleteEmployee(String id) {
         employeeRepo.deleteByEmployeeId(id);
     }

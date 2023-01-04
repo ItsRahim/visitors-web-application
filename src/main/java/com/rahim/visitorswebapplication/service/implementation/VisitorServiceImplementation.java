@@ -11,18 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class VisitorServiceImplementation implements VisitorService {
     private final VisitorRepository visitorRepository;
 
     @Override
-    @Transactional
     public Visitor createVisitor(Visitor visitor) {
         return visitorRepository.save(visitor);
     }
 
     @Override
-    @Transactional
     public Visitor updateVisitor(Visitor visitor, String id) {
         Visitor toUpdate = visitorRepository.findByIdOrError(id);
         toUpdate.setFirstName(visitor.getFirstName());
