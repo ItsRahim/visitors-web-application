@@ -32,7 +32,6 @@ public class VisitorServiceImplementation implements VisitorService {
     }
 
     @Override
-    @Transactional
     public void deleteVisitor(String id) {
         visitorRepository.deleteByVisitorId(id);
     }
