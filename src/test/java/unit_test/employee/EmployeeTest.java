@@ -1,6 +1,5 @@
 package unit_test.employee;
 
-import com.rahim.visitorswebapplication.helper.EmployeeHelper;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,11 +17,9 @@ class EmployeeTest {
     @BeforeAll
     public static void setUp() {
         employee1 = new Employee(
-                "100",
                 "Rahim",
                 "Ahmed",
                 LocalDate.of(2001, Month.AUGUST, 17),
-                EmployeeHelper.emailFormatter("rahim", "ahmed"),
                 LocalDate.of(2019, Month.DECEMBER, 21),
                 EmployeeRole.HOME_MANAGER
         );
