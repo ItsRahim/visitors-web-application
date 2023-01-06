@@ -1,6 +1,6 @@
 package com.rahim.visitorswebapplication;
 
-import com.rahim.visitorswebapplication.config.EmployeeConfigurations;
+import com.rahim.visitorswebapplication.helper.EmployeeHelper;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Visitor;
@@ -26,7 +26,7 @@ public class Main {
                     "Rahim",
                     "Ahmed",
                     LocalDate.of(2001, Month.AUGUST, 17),
-                    EmployeeConfigurations.emailFormatter("rahim", "ahmed"),
+                    EmployeeHelper.emailFormatter("rahim", "ahmed"),
                     LocalDate.of(2019, Month.DECEMBER, 21),
                     EmployeeRole.HOME_MANAGER
             );
@@ -35,7 +35,7 @@ public class Main {
                     "Reehan",
                     "Saif",
                     LocalDate.of(2013, Month.JANUARY, 13),
-                    EmployeeConfigurations.emailFormatter("reehan", "saif"),
+                    EmployeeHelper.emailFormatter("reehan", "saif"),
                     LocalDate.of(2022, Month.JULY, 13),
                     EmployeeRole.RECEPTIONIST
             );
