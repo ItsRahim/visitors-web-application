@@ -19,7 +19,7 @@ public class EmployeeController {
     localhost:8080/api/v2/employee/METHOD
      */
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/list")
+    @GetMapping("")
     public Collection<Employee> listAll() {
         return employeeService.listAll(10);
     }
