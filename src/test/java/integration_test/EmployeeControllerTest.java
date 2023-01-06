@@ -52,11 +52,9 @@ class EmployeeControllerTest {
     void shouldCreateEmployee() throws Exception {
         MvcResult result = mockMvc.perform(post("/api/v2/employee")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\": \"UUID.randomUUID().toString()\"," +
-                                "\"firstName\": \"Jasmin\", " +
+                        .content("{\"firstName\": \"Jasmin\", " +
                                 "\"lastName\": \"Khanam\"," +
                                 "\"dob\": \"1980-05-31\"," +
-                                "\"email\": \"jasmin.khanam@bupa.com\"," +
                                 "\"startDate\": \"2012-07-15\"," +
                                 "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
                 .andExpect(status().isCreated())
@@ -79,7 +77,7 @@ class EmployeeControllerTest {
 
     @Test
     void shouldGetAllEmployees() throws Exception {
-        mockMvc.perform(get("/api/v2/employee/list"))
+        mockMvc.perform(get("/api/v2/employee"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
