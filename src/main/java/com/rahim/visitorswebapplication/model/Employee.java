@@ -14,6 +14,9 @@ import java.util.UUID;
 @Table(name="employees")
 @NoArgsConstructor
 public class Employee {
+    @Transient
+    EmployeeHelper employeeHelper;
+
     @Id
     @Column(unique = true)
     private String id;
@@ -39,7 +42,7 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
-        this.email = EmployeeHelper.emailFormatter(this.firstName, this.lastName);
+        this.email = employeeHelper.checkEmailExists(this.firstName, this.lastName);
         this.startDate = startDate;
         this.role = role;
     }
