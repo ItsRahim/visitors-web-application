@@ -6,44 +6,41 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "bookings")
-@AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 public class Booking {
     @Id
-    @NonNull
-    private Long id;
+    private String id;
 
-
-    @NonNull
     @ManyToOne
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-
-    @NonNull
     @OneToOne
     @JoinColumn(name = "resident_id")
     private Resident resident;
 
-    @NonNull
     @Column(name = "booking_time")
     private LocalDateTime bookingTime;
 
-    @Nullable
     @Column(name = "start_time")
     private LocalDateTime bookingStartTime;
 
-    @Nullable
     @Column(name = "end_time")
     private LocalDateTime bookingEndTime;
 
-    @NonNull
     @Column(name = "status")
-    private BookingStatus bookingStatus = BookingStatus.PENDING;
+    private BookingStatus bookingStatus;
 
+    public Booking(Visitor visitor, Resident resident, LocalDateTime bookingTime) {
+        this.id = UUID.randomUUID().toString();
+        this.visitor = visitor;
+        this.resident = resident;
+        this.bookingTime = bookingTime;
+        this.bookingStatus = BookingStatus.PENDING;
+    }
 }
