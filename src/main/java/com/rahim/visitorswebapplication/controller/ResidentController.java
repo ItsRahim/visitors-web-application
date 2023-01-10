@@ -16,7 +16,7 @@ public class ResidentController {
     private final ResidentService residentService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("")
+    @GetMapping
     public Collection<Resident> listAll() {
         return residentService.listAll(10);
     }
@@ -28,7 +28,7 @@ public class ResidentController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping
     public Resident create(@RequestBody Resident resident) {
         return residentService.createResident(resident);
     }

@@ -16,7 +16,7 @@ public class VisitorController {
 
     private final VisitorService visitorService;
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("")
+    @GetMapping
     public Collection<Visitor> listAll() {
         return visitorService.listAll(10);
     }
@@ -28,7 +28,7 @@ public class VisitorController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping
     public Visitor create(@RequestBody Visitor visitor) {
         return visitorService.createVisitor(visitor);
     }

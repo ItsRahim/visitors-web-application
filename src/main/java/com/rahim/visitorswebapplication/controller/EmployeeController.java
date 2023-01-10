@@ -19,7 +19,7 @@ public class EmployeeController {
     localhost:8080/api/v2/employee/METHOD
      */
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("")
+    @GetMapping
     public Collection<Employee> listAll() {
         return employeeService.listAll(10);
     }
@@ -31,7 +31,7 @@ public class EmployeeController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("")
+    @PostMapping
     public Employee create(@RequestBody Employee employee) {
         return employeeService.createEmployee(employee);
     }
