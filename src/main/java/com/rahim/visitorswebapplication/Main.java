@@ -1,9 +1,14 @@
 package com.rahim.visitorswebapplication;
 
+import com.rahim.visitorswebapplication.enumeration.ResidentUnit;
+import com.rahim.visitorswebapplication.model.Booking;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
+import com.rahim.visitorswebapplication.model.Resident;
 import com.rahim.visitorswebapplication.model.Visitor;
+import com.rahim.visitorswebapplication.repository.BookingRepository;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
+import com.rahim.visitorswebapplication.repository.ResidentRepository;
 import com.rahim.visitorswebapplication.repository.VisitorRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +23,10 @@ import java.util.UUID;
 @SpringBootApplication
 public class Main {
     @Bean
-    CommandLineRunner addEmployee(EmployeeRepository employeeRepo, VisitorRepository visitorRepo) {
+    CommandLineRunner addEmployee(EmployeeRepository employeeRepo,
+                                  VisitorRepository visitorRepo,
+                                  ResidentRepository residentRepo,
+                                  BookingRepository bookingRepository) {
         return args -> {
             Employee rahim = new Employee(
                     "Rahim",
@@ -41,8 +49,24 @@ public class Main {
                     "jasminkhanam@yahoo.co.uk",
                     "07770594166"
             );
+            Resident resident = new Resident(
+                    "Leo",
+                    "Bigglesworth",
+                    LocalDate.of(2021, Month.JUNE, 26),
+                    ResidentUnit.WILLOW,
+                    "Self-Funded",
+                    1,
+                    LocalDate.of(2023, Month.JANUARY, 10)
+            );
+//            Booking booking = new Booking(
+//                    visitor,
+//                    resident,
+//                    LocalDate.of(2023, Month.JANUARY, 28).atTime(13, 15)
+//            );
             employeeRepo.saveAll(List.of(rahim, reehan));
             visitorRepo.saveAll(List.of(visitor));
+            residentRepo.saveAll(List.of(resident));
+            //bookingRepository.saveAll(List.of(booking));
         };
     }
     public static void main(String[] args) {
