@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Bean;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
-import java.util.UUID;
 
 @SpringBootApplication
 public class Main {
@@ -43,7 +42,6 @@ public class Main {
                     EmployeeRole.RECEPTIONIST
             );
             Visitor visitor = new Visitor(
-                    UUID.randomUUID().toString(),
                     "Jasmin",
                     "Khanam",
                     "jasminkhanam@yahoo.co.uk",
@@ -58,15 +56,15 @@ public class Main {
                     1,
                     LocalDate.of(2023, Month.JANUARY, 10)
             );
-//            Booking booking = new Booking(
-//                    visitor,
-//                    resident,
-//                    LocalDate.of(2023, Month.JANUARY, 28).atTime(13, 15)
-//            );
+            Booking booking = new Booking(
+                    visitor,
+                    resident,
+                    LocalDate.of(2023, Month.JANUARY, 28).atTime(13, 15)
+            );
             employeeRepo.saveAll(List.of(rahim, reehan));
             visitorRepo.saveAll(List.of(visitor));
             residentRepo.saveAll(List.of(resident));
-            //bookingRepository.saveAll(List.of(booking));
+            bookingRepository.saveAll(List.of(booking));
         };
     }
     public static void main(String[] args) {
