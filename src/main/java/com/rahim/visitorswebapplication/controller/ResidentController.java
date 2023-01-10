@@ -16,7 +16,7 @@ public class ResidentController {
     private final ResidentService residentService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/list")
+    @GetMapping("")
     public Collection<Resident> listAll() {
         return residentService.listAll(10);
     }

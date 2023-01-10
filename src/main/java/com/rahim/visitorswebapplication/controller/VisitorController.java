@@ -16,7 +16,7 @@ public class VisitorController {
 
     private final VisitorService visitorService;
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/list")
+    @GetMapping("")
     public Collection<Visitor> listAll() {
         return visitorService.listAll(10);
     }
