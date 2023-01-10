@@ -1,4 +1,4 @@
-package unit_test.resident;
+package unit_test;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

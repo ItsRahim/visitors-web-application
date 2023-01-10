@@ -1,4 +1,4 @@
-package unit_test.employee;
+package unit_test;
 
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import com.rahim.visitorswebapplication.model.Employee;
