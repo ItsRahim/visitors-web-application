@@ -1,7 +1,6 @@
 package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.BookingStatus;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 

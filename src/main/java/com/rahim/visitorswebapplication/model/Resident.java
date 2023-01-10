@@ -1,7 +1,7 @@
 package com.rahim.visitorswebapplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.rahim.visitorswebapplication.enumeration.ResidentUnit;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,6 +35,7 @@ public class Resident {
     private LocalDate admissionDate;
 
     @OneToOne(mappedBy = "resident")
+    @JsonIgnore
     private Booking booking;
 
     public Resident(String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
