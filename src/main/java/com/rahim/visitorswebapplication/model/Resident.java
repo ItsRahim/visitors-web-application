@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -34,9 +35,9 @@ public class Resident {
     @Column(name = "admission_date")
     private LocalDate admissionDate;
 
-    @OneToOne(mappedBy = "resident")
+    @OneToMany(mappedBy = "resident")
     @JsonIgnore
-    private Booking booking;
+    private Set<Booking> booking;
 
     public Resident(String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
         this.id = UUID.randomUUID().toString();

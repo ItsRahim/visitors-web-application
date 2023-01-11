@@ -19,7 +19,7 @@ public class Booking {
     @JoinColumn(name = "visitor_id")
     private Visitor visitor;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "resident_id")
     private Resident resident;
 
