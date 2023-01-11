@@ -1,6 +1,7 @@
 package com.rahim.visitorswebapplication;
 
 import com.rahim.visitorswebapplication.enumeration.ResidentUnit;
+import com.rahim.visitorswebapplication.helper.EmployeeHelper;
 import com.rahim.visitorswebapplication.model.Booking;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
@@ -26,11 +27,13 @@ public class Main {
                                   VisitorRepository visitorRepo,
                                   ResidentRepository residentRepo,
                                   BookingRepository bookingRepository) {
+        EmployeeHelper employeeHelper = new EmployeeHelper(employeeRepo);
         return args -> {
             Employee rahim = new Employee(
                     "Rahim",
                     "Ahmed",
                     LocalDate.of(2001, Month.AUGUST, 17),
+                    employeeHelper.generateEmail("Rahim", "Ahmed"),
                     LocalDate.of(2019, Month.DECEMBER, 21),
                     EmployeeRole.HOME_MANAGER
             );
@@ -38,6 +41,7 @@ public class Main {
                     "Reehan",
                     "Saif",
                     LocalDate.of(2013, Month.JANUARY, 13),
+                    employeeHelper.generateEmail("Reehan", "Saif"),
                     LocalDate.of(2022, Month.JULY, 13),
                     EmployeeRole.RECEPTIONIST
             );
