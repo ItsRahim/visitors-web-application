@@ -40,7 +40,7 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public void processBooking(String id) {
+    public Booking processBooking(String id) {
         Booking booking = bookingRepository.findByIdOrError(id);
         BookingStatus status = booking.getBookingStatus();
         switch (status) {
@@ -52,12 +52,10 @@ public class BookingServiceImplementation implements BookingService {
                 booking.setBookingStatus(BookingStatus.COMPLETE);
                 booking.setBookingEndTime(LocalDateTime.now());
             }
-            default -> {
-                log.info("Booking is already complete");
-                return;
-            }
+            default -> log.info("Booking is already complete");
         }
         bookingRepository.save(booking);
+        return booking;
     }
 
     @Override
