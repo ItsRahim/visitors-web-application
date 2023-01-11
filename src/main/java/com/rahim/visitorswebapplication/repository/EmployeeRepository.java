@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
 
@@ -18,6 +20,5 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Query("DELETE FROM Employee e WHERE e.id = ?1")
     void deleteByEmployeeId(String Id);
 
-    @Query("SELECT COUNT(e) FROM Employee e WHERE e.email = ?1")
-    boolean existsByEmail(String email);
+    Optional<Employee> findByEmail(String email);
 }
