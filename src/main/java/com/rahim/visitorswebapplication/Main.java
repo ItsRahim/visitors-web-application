@@ -61,10 +61,15 @@ public class Main {
                     resident,
                     LocalDate.of(2023, Month.JANUARY, 28).atTime(13, 15)
             );
+            Booking booking1 = new Booking(
+                    visitor,
+                    resident,
+                    LocalDate.of(2024, Month.JANUARY, 28).atTime(13, 15)
+            );
             employeeRepo.saveAll(List.of(rahim, reehan));
             visitorRepo.saveAll(List.of(visitor));
             residentRepo.saveAll(List.of(resident));
-            bookingRepository.saveAll(List.of(booking));
+            bookingRepository.saveAll(List.of(booking, booking1));
         };
     }
     public static void main(String[] args) {
