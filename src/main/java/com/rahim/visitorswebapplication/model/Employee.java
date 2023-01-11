@@ -1,23 +1,21 @@
 package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
-import com.rahim.visitorswebapplication.helper.EmployeeHelper;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Data
 @Entity
 @Table(name="employees")
 @NoArgsConstructor
 public class Employee {
-//    @Transient
-//    EmployeeHelper employeeHelper;
-
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(unique = true)
     private String id;
 
@@ -37,12 +35,11 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private EmployeeRole role;
 
-    public Employee(String firstName, String lastName, LocalDate dob, LocalDate startDate, EmployeeRole role) {
-        this.id = UUID.randomUUID().toString();
+    public Employee(String firstName, String lastName, LocalDate dob, String email, LocalDate startDate, EmployeeRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
-        this.email = EmployeeHelper.emailFormatter(this.firstName, this.lastName);
+        this.email = email;
         this.startDate = startDate;
         this.role = role;
     }
