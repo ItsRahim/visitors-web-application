@@ -2,10 +2,8 @@ package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -16,7 +14,6 @@ import java.time.LocalDate;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true)
     private String id;
 
     @Column(name = "first_name")

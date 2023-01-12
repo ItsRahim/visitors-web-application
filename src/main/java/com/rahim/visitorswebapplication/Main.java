@@ -29,22 +29,22 @@ public class Main {
                                   BookingRepository bookingRepository) {
         EmployeeHelper employeeHelper = new EmployeeHelper(employeeRepo);
         return args -> {
-//            Employee rahim = new Employee(
-//                    "Rahim",
-//                    "Ahmed",
-//                    LocalDate.of(2001, Month.AUGUST, 17),
-//                    employeeHelper.generateEmail("Rahim", "Ahmed"),
-//                    LocalDate.of(2019, Month.DECEMBER, 21),
-//                    EmployeeRole.HOME_MANAGER
-//            );
-//            Employee reehan = new Employee(
-//                    "Reehan",
-//                    "Saif",
-//                    LocalDate.of(2013, Month.JANUARY, 13),
-//                    employeeHelper.generateEmail("Reehan", "Saif"),
-//                    LocalDate.of(2022, Month.JULY, 13),
-//                    EmployeeRole.RECEPTIONIST
-//            );
+            Employee rahim = new Employee(
+                    "Rahim",
+                    "Ahmed",
+                    LocalDate.of(2001, Month.AUGUST, 17),
+                    employeeHelper.generateEmail("Rahim", "Ahmed"),
+                    LocalDate.of(2019, Month.DECEMBER, 21),
+                    EmployeeRole.HOME_MANAGER
+            );
+            Employee reehan = new Employee(
+                    "Reehan",
+                    "Saif",
+                    LocalDate.of(2013, Month.JANUARY, 13),
+                    employeeHelper.generateEmail("Reehan", "Saif"),
+                    LocalDate.of(2022, Month.JULY, 13),
+                    EmployeeRole.RECEPTIONIST
+            );
             Visitor visitor = new Visitor(
                     "Jasmin",
                     "Khanam",
@@ -70,7 +70,7 @@ public class Main {
                     resident,
                     LocalDate.of(2024, Month.JANUARY, 28).atTime(13, 15)
             );
-            //employeeRepo.saveAll(List.of(rahim, reehan));
+            employeeRepo.saveAll(List.of(rahim, reehan));
             visitorRepo.saveAll(List.of(visitor));
             residentRepo.saveAll(List.of(resident));
             bookingRepository.saveAll(List.of(booking, booking1));

@@ -15,6 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Resident {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "first_name")
@@ -40,7 +41,6 @@ public class Resident {
     private Set<Booking> booking;
 
     public Resident(String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
-        this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;

@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
-import java.util.UUID;
 
 @Data
 @Entity
+@Table(name = "visitors")
 @NoArgsConstructor
 public class Visitor {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(name = "first_name")
@@ -30,7 +31,6 @@ public class Visitor {
     private Set<Booking> booking;
 
     public Visitor(String firstName, String lastName, String email, String phoneNumber) {
-        this.id = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
