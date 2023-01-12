@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Entity
@@ -13,6 +12,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @ManyToOne
@@ -36,7 +36,6 @@ public class Booking {
     private BookingStatus bookingStatus;
 
     public Booking(Visitor visitor, Resident resident, LocalDateTime bookingTime) {
-        this.id = UUID.randomUUID().toString();
         this.visitor = visitor;
         this.resident = resident;
         this.bookingTime = bookingTime;
