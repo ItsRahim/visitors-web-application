@@ -1,12 +1,18 @@
 package com.rahim.visitorswebapplication.controller;
 
+import com.rahim.visitorswebapplication.dto.ResidentDto;
+import com.rahim.visitorswebapplication.dto.ResidentDto;
+import com.rahim.visitorswebapplication.dto.ResidentDto;
+import com.rahim.visitorswebapplication.model.Resident;
 import com.rahim.visitorswebapplication.model.Resident;
 import com.rahim.visitorswebapplication.service.ResidentService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/resident")
@@ -14,17 +20,21 @@ import java.util.Collection;
 public class ResidentController {
 
     private final ResidentService residentService;
+    private final ModelMapper modelMapper;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public Collection<Resident> listAll() {
-        return residentService.listAll(10);
+    public Collection<ResidentDto> listAll() {
+        return residentService.listAll().stream()
+                .map(Resident -> modelMapper.map(Resident, ResidentDto.class))
+                .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Resident getResident(@PathVariable Long id) {
-        return residentService.getResident(id);
+    public ResidentDto getResident(@PathVariable Long id) {
+        Resident resident = residentService.getResident(id);
+        return modelMapper.map(resident, ResidentDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,12 +1,15 @@
 package com.rahim.visitorswebapplication.controller;
 
+import com.rahim.visitorswebapplication.dto.VisitorDto;
 import com.rahim.visitorswebapplication.model.Visitor;
 import com.rahim.visitorswebapplication.service.VisitorService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -15,16 +18,20 @@ import java.util.Collection;
 public class VisitorController {
 
     private final VisitorService visitorService;
+    private final ModelMapper modelMapper;
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public Collection<Visitor> listAll() {
-        return visitorService.listAll(10);
+    public Collection<VisitorDto> listAll() {
+        return visitorService.listAll().stream()
+                .map(Visitor -> modelMapper.map(Visitor, VisitorDto.class))
+                .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Visitor getVisitor(@PathVariable Long id) {
-        return visitorService.getVisitor(id);
+    public VisitorDto getVisitor(@PathVariable Long id) {
+        Visitor visitor = visitorService.getVisitor(id);
+        return modelMapper.map(visitor, VisitorDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

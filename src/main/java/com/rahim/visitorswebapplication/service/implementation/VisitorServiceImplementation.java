@@ -42,7 +42,7 @@ public class VisitorServiceImplementation implements VisitorService {
     }
 
     @Override
-    public Collection<Visitor> listAll(int limit) {
-        return visitorRepository.findAll(PageRequest.of(0, limit)).toList();
+    public Collection<Visitor> listAll() {
+        return visitorRepository.findAll();
     }
 }

@@ -9,5 +9,5 @@ public interface VisitorService {
     Visitor updateVisitor(Visitor employee, Long id);
     void deleteVisitor(Long id);
     Visitor getVisitor(Long id);
-    Collection<Visitor> listAll(int limit);
+    Collection<Visitor> listAll();
 }

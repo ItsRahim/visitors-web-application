@@ -9,5 +9,5 @@ public interface ResidentService {
     Resident updateResident(Resident resident, Long id);
     void deleteResident(Long id);
     Resident getResident(Long id);
-    Collection<Resident> listAll(int limit);
+    Collection<Resident> listAll();
 }

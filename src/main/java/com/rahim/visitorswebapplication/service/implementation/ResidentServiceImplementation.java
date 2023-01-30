@@ -47,7 +47,7 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
-    public Collection<Resident> listAll(int limit) {
-        return residentRepository.findAll(PageRequest.of(0, limit)).toList();
+    public Collection<Resident> listAll() {
+        return residentRepository.findAll();
     }
 }
