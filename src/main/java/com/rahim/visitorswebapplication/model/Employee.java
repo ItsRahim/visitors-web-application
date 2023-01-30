@@ -1,9 +1,10 @@
 package com.rahim.visitorswebapplication.model;
 
 import com.rahim.visitorswebapplication.enumeration.EmployeeRole;
+import com.rahim.visitorswebapplication.helper.EmployeeHelper;
+
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +13,8 @@ import java.time.LocalDate;
 @Table(name="employees")
 @NoArgsConstructor
 public class Employee {
+//    @Transient
+//    EmployeeHelper employeeHelper = new EmployeeHelper();
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
@@ -36,6 +39,7 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
+        //this.email = EmployeeHelper.generateEmail(firstName, lastName);
         this.email = email;
         this.startDate = startDate;
         this.role = role;
