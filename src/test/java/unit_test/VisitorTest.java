@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResidentTest {
+class VisitorTest {
 
     @Test
     void getId() {
@@ -19,23 +19,11 @@ class ResidentTest {
     }
 
     @Test
-    void getDob() {
+    void getEmail() {
     }
 
     @Test
-    void getUnit() {
-    }
-
-    @Test
-    void getFundingType() {
-    }
-
-    @Test
-    void getBand() {
-    }
-
-    @Test
-    void getAdmissionDate() {
+    void getPhoneNumber() {
     }
 
     @Test
@@ -55,23 +43,11 @@ class ResidentTest {
     }
 
     @Test
-    void setDob() {
+    void setEmail() {
     }
 
     @Test
-    void setUnit() {
-    }
-
-    @Test
-    void setFundingType() {
-    }
-
-    @Test
-    void setBand() {
-    }
-
-    @Test
-    void setAdmissionDate() {
+    void setPhoneNumber() {
     }
 
     @Test
