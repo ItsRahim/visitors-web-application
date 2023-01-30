@@ -46,7 +46,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Collection<Employee> listAll(int limit) {
-        return employeeRepo.findAll(PageRequest.of(0, limit)).toList();
+    public Collection<Employee> listAll() {
+        return employeeRepo.findAll();
     }
 }
