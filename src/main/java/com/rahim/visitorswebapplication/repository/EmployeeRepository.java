@@ -10,15 +10,15 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, String> {
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    default Employee findByIdOrError(String id) {
+    default Employee findByIdOrError(Long id) {
         return findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @Modifying
     @Query("DELETE FROM Employee e WHERE e.id = ?1")
-    void deleteByEmployeeId(String Id);
+    void deleteByEmployeeId(Long Id);
 
     Optional<Employee> findByEmail(String email);
 }

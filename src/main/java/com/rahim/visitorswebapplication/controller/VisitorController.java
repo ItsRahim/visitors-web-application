@@ -23,7 +23,7 @@ public class VisitorController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Visitor getVisitor(@PathVariable String id) {
+    public Visitor getVisitor(@PathVariable Long id) {
         return visitorService.getVisitor(id);
     }
 
@@ -35,13 +35,13 @@ public class VisitorController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
-    public void deleteVisitor(@PathVariable String id) {
+    public void deleteVisitor(@PathVariable Long id) {
         visitorService.deleteVisitor(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public Visitor updateVisitor(@RequestBody Visitor visitor, @PathVariable String id) {
+    public Visitor updateVisitor(@RequestBody Visitor visitor, @PathVariable Long id) {
         return visitorService.updateVisitor(visitor, id);
     }
 

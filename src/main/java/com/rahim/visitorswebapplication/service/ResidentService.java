@@ -6,8 +6,8 @@ import java.util.Collection;
 
 public interface ResidentService {
     Resident createResident(Resident resident);
-    Resident updateResident(Resident resident, String id);
-    void deleteResident(String id);
-    Resident getResident(String id);
+    Resident updateResident(Resident resident, Long id);
+    void deleteResident(Long id);
+    Resident getResident(Long id);
     Collection<Resident> listAll(int limit);
 }

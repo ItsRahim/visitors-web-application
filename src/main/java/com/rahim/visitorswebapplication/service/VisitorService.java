@@ -6,8 +6,8 @@ import java.util.Collection;
 
 public interface VisitorService {
     Visitor createVisitor(Visitor employee);
-    Visitor updateVisitor(Visitor employee, String id);
-    void deleteVisitor(String id);
-    Visitor getVisitor(String id);
+    Visitor updateVisitor(Visitor employee, Long id);
+    void deleteVisitor(Long id);
+    Visitor getVisitor(Long id);
     Collection<Visitor> listAll(int limit);
 }

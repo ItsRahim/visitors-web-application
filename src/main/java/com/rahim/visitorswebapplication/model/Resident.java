@@ -15,8 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Resident {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface ResidentRepository extends JpaRepository<Resident, String> {
+public interface ResidentRepository extends JpaRepository<Resident, Long> {
 
-    default Resident findByIdOrError(String id) {
+    default Resident findByIdOrError(Long id) {
         return findById(id).orElseThrow(EntityNotFoundException::new);
     }
     @Modifying
     @Transactional
     @Query("DELETE FROM Resident e WHERE e.id = ?1")
-    void deleteByResidentId(String Id);
+    void deleteByResidentId(Long Id);
 }

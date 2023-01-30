@@ -23,7 +23,7 @@ public class ResidentController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Resident getResident(@PathVariable String id) {
+    public Resident getResident(@PathVariable Long id) {
         return residentService.getResident(id);
     }
 
@@ -35,13 +35,13 @@ public class ResidentController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
-    public void deleteResident(@PathVariable String id) {
+    public void deleteResident(@PathVariable Long id) {
         residentService.deleteResident(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/{id}")
-    public Resident updateResident(@RequestBody Resident resident, @PathVariable String id) {
+    public Resident updateResident(@RequestBody Resident resident, @PathVariable Long id) {
         return residentService.updateResident(resident, id);
     }
 }

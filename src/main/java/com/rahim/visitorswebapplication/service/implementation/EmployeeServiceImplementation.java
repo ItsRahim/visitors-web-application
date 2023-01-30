@@ -4,7 +4,6 @@ import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,7 +23,7 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public Employee updateEmployee(Employee emp, String id) {
+    public Employee updateEmployee(Employee emp, Long id) {
         Employee toUpdate = employeeRepo.findByIdOrError(id);
         toUpdate.setFirstName(emp.getFirstName());
         toUpdate.setLastName(emp.getLastName());
@@ -36,12 +35,12 @@ public class EmployeeServiceImplementation implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(String id) {
+    public void deleteEmployee(Long id) {
         employeeRepo.deleteByEmployeeId(id);
     }
 
     @Override
-    public Employee getEmployee(String id) {
+    public Employee getEmployee(Long id) {
         return employeeRepo.findById(id).orElse(null);
     }
 

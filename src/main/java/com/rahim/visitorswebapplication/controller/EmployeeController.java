@@ -32,7 +32,7 @@ public class EmployeeController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public EmployeeDto getEmployee(@PathVariable String id) {
+    public EmployeeDto getEmployee(@PathVariable Long id) {
         Employee employee = employeeService.getEmployee(id);
         return modelMapper.map(employee, EmployeeDto.class);
     }
@@ -45,13 +45,13 @@ public class EmployeeController {
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable String id) {
+    public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public Employee updateEmployee(@RequestBody Employee emp, @PathVariable String id) {
+    public Employee updateEmployee(@RequestBody Employee emp, @PathVariable Long id) {
         return employeeService.updateEmployee(emp, id);
     }
 }

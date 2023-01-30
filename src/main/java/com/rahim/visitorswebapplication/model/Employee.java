@@ -16,8 +16,8 @@ public class Employee {
 //    @Transient
 //    EmployeeHelper employeeHelper = new EmployeeHelper();
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;

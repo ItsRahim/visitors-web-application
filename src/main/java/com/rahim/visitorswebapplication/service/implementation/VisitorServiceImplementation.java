@@ -22,7 +22,7 @@ public class VisitorServiceImplementation implements VisitorService {
     }
 
     @Override
-    public Visitor updateVisitor(Visitor visitor, String id) {
+    public Visitor updateVisitor(Visitor visitor, Long id) {
         Visitor toUpdate = visitorRepository.findByIdOrError(id);
         toUpdate.setFirstName(visitor.getFirstName());
         toUpdate.setLastName(visitor.getLastName());
@@ -32,12 +32,12 @@ public class VisitorServiceImplementation implements VisitorService {
     }
 
     @Override
-    public void deleteVisitor(String id) {
+    public void deleteVisitor(Long id) {
         visitorRepository.deleteByVisitorId(id);
     }
 
     @Override
-    public Visitor getVisitor(String id) {
+    public Visitor getVisitor(Long id) {
         return visitorRepository.findById(id).orElse(null);
     }
 

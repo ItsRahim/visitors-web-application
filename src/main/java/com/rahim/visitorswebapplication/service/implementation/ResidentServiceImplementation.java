@@ -24,7 +24,7 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
-    public Resident updateResident(Resident resident, String id) {
+    public Resident updateResident(Resident resident, Long id) {
         Resident toUpdate = residentRepository.findByIdOrError(id);
         toUpdate.setFirstName(resident.getFirstName());
         toUpdate.setLastName(resident.getLastName());
@@ -37,12 +37,12 @@ public class ResidentServiceImplementation implements ResidentService {
     }
 
     @Override
-    public void deleteResident(String id) {
+    public void deleteResident(Long id) {
         residentRepository.deleteByResidentId(id);
     }
 
     @Override
-    public Resident getResident(String id) {
+    public Resident getResident(Long id) {
         return residentRepository.findById(id).orElse(null);
     }
 
