@@ -11,6 +11,7 @@ import com.rahim.visitorswebapplication.repository.BookingRepository;
 import com.rahim.visitorswebapplication.repository.EmployeeRepository;
 import com.rahim.visitorswebapplication.repository.ResidentRepository;
 import com.rahim.visitorswebapplication.repository.VisitorRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,13 +28,11 @@ public class Main {
                                   VisitorRepository visitorRepo,
                                   ResidentRepository residentRepo,
                                   BookingRepository bookingRepository) {
-        EmployeeHelper employeeHelper = new EmployeeHelper(employeeRepo);
         return args -> {
             Employee rahim = new Employee(
                     "Rahim",
                     "Ahmed",
                     LocalDate.of(2001, Month.AUGUST, 17),
-                    employeeHelper.generateEmail("Rahim", "Ahmed"),
                     LocalDate.of(2019, Month.DECEMBER, 21),
                     EmployeeRole.HOME_MANAGER
             );
@@ -41,7 +40,6 @@ public class Main {
                     "Reehan",
                     "Saif",
                     LocalDate.of(2013, Month.JANUARY, 13),
-                    employeeHelper.generateEmail("Reehan", "Saif"),
                     LocalDate.of(2022, Month.JULY, 13),
                     EmployeeRole.RECEPTIONIST
             );
@@ -75,6 +73,11 @@ public class Main {
             residentRepo.saveAll(List.of(resident));
             bookingRepository.saveAll(List.of(booking, booking1));
         };
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
