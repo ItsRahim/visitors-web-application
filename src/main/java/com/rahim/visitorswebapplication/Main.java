@@ -33,6 +33,7 @@ public class Main {
                     "Rahim",
                     "Ahmed",
                     LocalDate.of(2001, Month.AUGUST, 17),
+                    "rahim.ahmed@bupa.com",
                     LocalDate.of(2019, Month.DECEMBER, 21),
                     EmployeeRole.HOME_MANAGER
             );
@@ -40,6 +41,7 @@ public class Main {
                     "Reehan",
                     "Saif",
                     LocalDate.of(2013, Month.JANUARY, 13),
+                    "reehan.saif@bupa.com",
                     LocalDate.of(2022, Month.JULY, 13),
                     EmployeeRole.RECEPTIONIST
             );
