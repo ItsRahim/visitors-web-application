@@ -59,7 +59,7 @@ public class BookingServiceImplementation implements BookingService {
     }
 
     @Override
-    public Collection<Booking> listAll(int limit) {
-        return bookingRepository.findAll(PageRequest.of(0, limit)).toList();
+    public Collection<Booking> listAll() {
+        return bookingRepository.findAll();
     }
 }

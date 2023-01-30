@@ -1,29 +1,36 @@
 package com.rahim.visitorswebapplication.controller;
 
+import com.rahim.visitorswebapplication.dto.BookingDto;
 import com.rahim.visitorswebapplication.model.Booking;
 import com.rahim.visitorswebapplication.service.BookingService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/booking")
 @RequiredArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
+    private final ModelMapper modelMapper;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public Collection<Booking> listAll() {
-        return bookingService.listAll(10);
+    public List<BookingDto> listAll() {
+        return bookingService.listAll().stream()
+                .map(Booking -> modelMapper.map(Booking, BookingDto.class))
+                .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Booking getBooking(@PathVariable String id) {
-        return bookingService.getBooking(id);
+    public BookingDto getBooking(@PathVariable String id) {
+        Booking booking = bookingService.getBooking(id);
+        return modelMapper.map(booking, BookingDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

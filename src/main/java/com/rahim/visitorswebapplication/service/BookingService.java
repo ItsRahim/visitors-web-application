@@ -10,5 +10,5 @@ public interface BookingService {
     void deleteBooking(String id);
     Booking getBooking(String id);
     Booking processBooking(String id);
-    Collection<Booking> listAll(int limit);
+    Collection<Booking> listAll();
 }
