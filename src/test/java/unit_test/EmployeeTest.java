@@ -63,8 +63,8 @@ class EmployeeTest {
 
     @Test
     void setId() {
-        employee1.setId("123");
-        assertEquals("123", employee1.getId());
+        employee1.setId(123L);
+        assertEquals(123L, employee1.getId());
     }
 
     @Test

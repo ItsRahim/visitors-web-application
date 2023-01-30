@@ -86,61 +86,60 @@ class EmployeeControllerTest {
                 .andExpect(jsonPath("$.size()", Matchers.is(2)));
     }
 
-//    @DirtiesContext
-//    @Test
-//    void shouldDeleteEmployee() throws Exception {
-//        mockMvc.perform(delete("/api/v2/employee/{id}", "11"))
-//                .andExpect(status().isOk());
-//        //verify(employeeService).deleteEmployee("11");
-//        verifyNoMoreInteractions(employeeService);
-//
-//        Employee employee = employeeService.getEmployee("11");
-//        assertNull(employee);
-//    }
-//
-//    @Test
-//    void shouldGetEmployeeById() throws Exception {
-//        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
-//                .get("/api/v2/employee/{id}", "11")
-//                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
-//        MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().getResponse();
-//
-//        assertEquals(HttpStatus.OK.value(), response.getStatus());
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.registerModule(new JavaTimeModule());
-//
-//        String responseBody = response.getContentAsString();
-//
-//        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
-//
-//        assertEquals(createdEmployee.getFirstName(), "Reehan");
-//        assertEquals(createdEmployee.getId(), "11");
-//    }
-//
-//    @DirtiesContext
-//    @Test
-//    void shouldUpdateEmployee() throws Exception {
-//        MvcResult result = mockMvc.perform(put("/api/v2/employee/{id}", "11")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"id\": \"UUID.randomUUID().toString()\"," +
-//                                "\"firstName\": \"Reehan2\", " +
-//                                "\"lastName\": \"Saif2\"," +
-//                                "\"dob\": \"2013-01-13\"," +
-//                                "\"email\": \"reehan.saif2@bupa.com\"," +
-//                                "\"startDate\": \"2022-12-25\"," +
-//                                "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
-//                .andExpect(status().isNoContent())
-//                .andReturn();
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        objectMapper.registerModule(new JavaTimeModule());
-//
-//        String responseBody = result.getResponse().getContentAsString();
-//
-//        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
-//
-//        assertEquals(createdEmployee.getFirstName(), "Reehan2");
-//        assertEquals(createdEmployee.getEmail(), "reehan.saif2@bupa.com");
-//    }
+    @DirtiesContext
+    @Test
+    void shouldDeleteEmployee() throws Exception {
+        mockMvc.perform(delete("/api/v2/employee/{id}", "1"))
+                .andExpect(status().isOk());
+        verifyNoMoreInteractions(employeeService);
+
+        Employee employee = employeeService.getEmployee(1L);
+        assertNull(employee);
+    }
+
+    @Test
+    void shouldGetEmployeeById() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders
+                .get("/api/v2/employee/{id}", "2")
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON);
+        MockHttpServletResponse response = mockMvc.perform(requestBuilder).andReturn().getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        String responseBody = response.getContentAsString();
+
+        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
+
+        assertEquals(createdEmployee.getFirstName(), "Reehan");
+        assertEquals(createdEmployee.getId(), 2L);
+    }
+
+    @DirtiesContext
+    @Test
+    void shouldUpdateEmployee() throws Exception {
+        MvcResult result = mockMvc.perform(put("/api/v2/employee/{id}", "2")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"id\": \"2\"," +
+                                "\"firstName\": \"Reehan2\", " +
+                                "\"lastName\": \"Saif2\"," +
+                                "\"dob\": \"2013-01-13\"," +
+                                "\"email\": \"reehan.saif2@bupa.com\"," +
+                                "\"startDate\": \"2022-12-25\"," +
+                                "\"role\": \"ACTIVITIES_COORDINATOR\"}"))
+                .andExpect(status().isNoContent())
+                .andReturn();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+
+        String responseBody = result.getResponse().getContentAsString();
+
+        Employee createdEmployee = objectMapper.readValue(responseBody, Employee.class);
+
+        assertEquals(createdEmployee.getFirstName(), "Reehan2");
+        assertEquals(createdEmployee.getEmail(), "reehan.saif2@bupa.com");
+    }
 }
