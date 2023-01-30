@@ -1,12 +1,15 @@
 package com.rahim.visitorswebapplication.controller;
 
+import com.rahim.visitorswebapplication.dto.EmployeeDto;
 import com.rahim.visitorswebapplication.model.Employee;
 import com.rahim.visitorswebapplication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v2/employee")
@@ -14,20 +17,24 @@ import java.util.Collection;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final ModelMapper modelMapper;
 
     /*
     localhost:8080/api/v2/employee/METHOD
      */
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public Collection<Employee> listAll() {
-        return employeeService.listAll(10);
+    public Collection<EmployeeDto> listAll() {
+        return employeeService.listAll().stream()
+                .map(Employee -> modelMapper.map(Employee, EmployeeDto.class))
+                .collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
-    public Employee getEmployee(@PathVariable String id) {
-        return employeeService.getEmployee(id);
+    public EmployeeDto getEmployee(@PathVariable String id) {
+        Employee employee = employeeService.getEmployee(id);
+        return modelMapper.map(employee, EmployeeDto.class);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
