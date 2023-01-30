@@ -56,6 +56,7 @@ public class Main {
                     "Bigglesworth",
                     LocalDate.of(2021, Month.JUNE, 26),
                     ResidentUnit.WILLOW,
+                    1,
                     "Self-Funded",
                     1,
                     LocalDate.of(2023, Month.JANUARY, 10)
