@@ -28,6 +28,8 @@ public class Resident {
 
     private ResidentUnit unit;
 
+    private int roomNumber;
+
     @Column(name = "funding_type")
     private String fundingType;
 
@@ -40,11 +42,12 @@ public class Resident {
     @JsonIgnore
     private Set<Booking> booking;
 
-    public Resident(String firstName, String lastName, LocalDate dob, ResidentUnit unit, String fundingType, int band, LocalDate admissionDate) {
+    public Resident(String firstName, String lastName, LocalDate dob, ResidentUnit unit, int roomNumber, String fundingType, int band, LocalDate admissionDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.unit = unit;
+        this.roomNumber = roomNumber;
         this.fundingType = fundingType;
         this.band = band;
         this.admissionDate = admissionDate;
