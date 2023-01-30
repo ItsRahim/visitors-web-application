@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class BookingDto {
+    private String id;
     private VisitorDto visitor;
     private ResidentDto resident;
     private LocalDateTime bookingTime;

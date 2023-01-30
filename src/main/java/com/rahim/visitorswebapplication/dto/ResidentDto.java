@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class ResidentDto {
+    private Long id;
     private String firstName;
     private String lastName;
     private ResidentUnit unit;
