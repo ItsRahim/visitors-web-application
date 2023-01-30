@@ -9,5 +9,5 @@ public interface EmployeeService {
     Employee updateEmployee(Employee employee, String id);
     void deleteEmployee(String id);
     Employee getEmployee(String id);
-    Collection<Employee> listAll(int limit);
+    Collection<Employee> listAll();
 }
